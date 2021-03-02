@@ -88,7 +88,7 @@ const App = () => {
         <div className={styles.footer}>
           <button
             onClick={loadMoreHandler}
-            className="btn btn-primary w-25"
+            className="btn btn-primary w-50"
             type="button"
             id="button-addon2"
             disabled={loading || images.length < 1}

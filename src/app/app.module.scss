@@ -10,6 +10,7 @@
   margin: 0 4px;
 
   .meta {
+    text-align: center;
     padding: 1.5rem 4px 0 4px;
   }
 }
@@ -26,17 +27,13 @@
 ul {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 li {
   list-style-type: none;
   height: 40vh;
-  flex-grow: 1;
   padding: 4px;
-}
-
-li:last-child {
-  flex-grow: 10;
 }
 
 .image {
