@@ -1,67 +1,72 @@
 import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+  getSearchResults,
+  getRandomPhotos,
+  getMoreSearchResults,
+  getMoreRandomPhotos
+} from '../store/actions/imageActions'
 import styles from './app.module.scss'
 import SearchBar from './components/SearchBar'
 
 const App = () => {
-  const [images, setImages] = useState([])
+  const [loading, setLoading] = useState(true)
+  const images = useSelector((state) => state.search.results)
+  const total = useSelector((state) => state.search.total)
+  // const totalPages = useSelector((state) => state.search.total_pages)
+  const keyword = useSelector((state) => state.search.keyword)
+  const [page, setPage] = useState(1)
+  const dispatch = useDispatch()
   const [query, setQuery] = useState('')
 
-  const ENDPOINT = 'https://api.unsplash.com'
+  const loaded = () => {
+    setLoading(false)
+  }
+  const loadedMore = () => {
+    setPage(page + 1)
+    setLoading(false)
+  }
+  const loadMoreHandler = () => {
+    setLoading(true)
+    if (!query) {
+      dispatch(getMoreRandomPhotos(loadedMore, { page: page + 1 }))
+    } else {
+      dispatch(
+        getMoreSearchResults(loadedMore, { query, page: page + 1 })
+      )
+    }
+  }
 
-  function fetchImages(q) {
-    const requestURL = `${ENDPOINT}/search/photos?query=${q}`
-    const requestHeaders = new Headers()
-    requestHeaders.append(
-      'Authorization',
-      'Client-ID CDk34t9WKXMunCgr3HpxuI1sDh3sy02h9LSp7Wu7BUA'
-    )
-    const driveRequest = new Request(requestURL, {
-      method: 'GET',
-      headers: requestHeaders
-    })
-
-    return fetch(driveRequest).then((response) => {
-      if (response.ok && response.status === 200) {
-        return response.json()
-      }
-      throw response.status
-    })
+  const searchLoaded = () => {
+    setLoading(false)
+  }
+  const searchHandler = () => {
+    setLoading(true)
+    setPage(1)
+    dispatch(getSearchResults(searchLoaded, { query }))
   }
 
   useEffect(() => {
-    fetchImages('fun').then((json) => {
-      console.log(json)
-      setImages(json.results)
-    })
-  }, [])
-
-  function renderImagesColumns(x) {
-    for (let i = 0; i < images.length; i += 1) {
-      if (i % x === 0) {
-        return (
-          <div className={styles.column}>
-            <img
-              key={images[i].id}
-              src={images[i].urls.small}
-              alt={images[i].alt_description}
-              style={{ width: '100%' }}
-            />
-          </div>
-        )
-      }
-    }
-  }
+    dispatch(getRandomPhotos(loaded))
+  }, [dispatch])
 
   return (
     <div className="container">
       <SearchBar
-        handleClick={() =>
-          fetchImages(query).then((json) => setImages(json.results))
-        }
+        className={styles.header}
+        handleClick={searchHandler}
         query={query}
         setQuery={setQuery}
       />
-      <div className="container-md">
+      <div className={styles.main}>
+        <div className={styles.meta}>
+          <strong>
+            {keyword
+              ? `SHOWING RESULTS FOR '${keyword.toUpperCase()}'`
+              : 'RANDOM'}
+          </strong>
+          <p className="text-secondary">{total} Images Found</p>
+        </div>
         <div className={styles.row}>
           <div className={styles.column}>
             {images.map(
@@ -116,6 +121,17 @@ const App = () => {
             )}
           </div>
         </div>
+      </div>
+      <div className={styles.footer}>
+        <button
+          onClick={loadMoreHandler}
+          className="btn btn-primary"
+          type="button"
+          id="button-addon2"
+          disabled={loading || images.length < 1}
+        >
+          {loading ? 'LOADING' : 'LOAD MORE'}
+        </button>
       </div>
     </div>
   )
