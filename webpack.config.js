@@ -41,6 +41,9 @@ const commonConfig = {
         }
       }
     ]
+  },
+  resolve: {
+    extensions: ['.js', '.jsx', '.scss']
   }
 }
 
