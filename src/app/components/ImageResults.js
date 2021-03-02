@@ -2,7 +2,30 @@ import React from 'react'
 
 export default function ImageResults({ styles, images }) {
   return (
-    <>
+    <ul>
+      {images.map((image) => (
+        <li key={image.id}>
+          <a
+            target="_blank"
+            rel="noreferrer"
+            href={image.urls.full}
+            download
+          >
+            <img
+              className={styles.image}
+              src={image.urls.small}
+              alt={image.alt_description}
+              style={{ width: '100%' }}
+            />
+          </a>
+        </li>
+      ))}
+    </ul>
+  )
+}
+
+/**
+ *  <>
       <div className={styles.column}>
         {images.map(
           (image, i) =>
@@ -84,5 +107,4 @@ export default function ImageResults({ styles, images }) {
         )}
       </div>
     </>
-  )
-}
+ */
