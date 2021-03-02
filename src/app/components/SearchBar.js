@@ -1,4 +1,5 @@
 import React from 'react'
+import searchIcon from '../../assets/search.svg'
 
 export default function SearchBar({
   className,
@@ -25,11 +26,11 @@ export default function SearchBar({
         />
         <button
           onClick={handleClick}
-          className="btn btn-primary border-0"
+          className="btn btn-primary w-25 "
           type="submit"
           id="button-addon2"
         >
-          Search
+          <img src={searchIcon} alt="search" />
         </button>
       </div>
     </form>

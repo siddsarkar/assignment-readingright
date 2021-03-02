@@ -14,10 +14,13 @@
 
 - [x] Initialize barebone.
 - [x] Get API Keys
-  - Access Key CDk34t9WKXMunCgr3HpxuI1sDh3sy02h9LSp7Wu7BUA
-  - Secret Key 4J0q4eFGlquKdTZqizOSt2gTtPzOe-nS_mwIX2tzt9c
   - API Usage Docs [Link](https://unsplash.com/documentation)
 - [x] Set up Redux
 - [x] Set up webpack to use 'Roboto Condensed font'
 
 done 6:38pm 2/3/2021
+
+### More-Addons
+
+- Display Loader
+- Download full-resolution image onclick

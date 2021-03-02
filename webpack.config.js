@@ -76,7 +76,7 @@ const productionConfig = {
   module: {
     rules: [
       {
-        test: /\.scss$/,
+        test: /\.(s?)css$/,
         use: [
           MiniCssExtractPlugin.loader, // 3. Extract css into files
           'css-loader', // 2. Turns css into commonjs
@@ -102,7 +102,7 @@ const developmentConfig = {
   module: {
     rules: [
       {
-        test: /\.scss$/,
+        test: /\.(s?)css$/,
         use: [
           'style-loader', // 3. Inject styles into DOM
           'css-loader', // 2. Turns css into commonjs
