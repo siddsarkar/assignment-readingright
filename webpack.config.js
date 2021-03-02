@@ -33,6 +33,12 @@ const commonConfig = {
             outputPath: 'images'
           }
         }
+      },
+      {
+        test: /\.(woff)$/,
+        use: {
+          loader: 'url-loader'
+        }
       }
     ]
   }

@@ -13,4 +13,9 @@
 ### Work-Flow Todos
 
 - [x] Initialize barebone.
-- [ ] Get API Keys
+- [x] Get API Keys
+  - Access Key CDk34t9WKXMunCgr3HpxuI1sDh3sy02h9LSp7Wu7BUA
+  - Secret Key 4J0q4eFGlquKdTZqizOSt2gTtPzOe-nS_mwIX2tzt9c
+  - API Usage Docs [Link](https://unsplash.com/documentation)
+- [x] Set up Redux
+- [x] Set up webpack to use 'Roboto Condensed font'
