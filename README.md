@@ -1,5 +1,9 @@
 # Assignment ReadingRight
 
+## Finished Project Link
+
+<https://siddsarkar.github.io/assignment-readingright/>
+
 ## Make Your Own Image Search Engine (UNSPLASH API)
 
 ### Features
