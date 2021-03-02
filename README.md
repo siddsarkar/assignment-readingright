@@ -19,3 +19,5 @@
   - API Usage Docs [Link](https://unsplash.com/documentation)
 - [x] Set up Redux
 - [x] Set up webpack to use 'Roboto Condensed font'
+
+done 6:38pm 2/3/2021
