@@ -1,5 +1,6 @@
 {
-  "name": "code",
+  "name": "assignment-readingright",
+  "homepage": "https://github.com/siddsarkar/assignment-readingright",
   "version": "1.0.0",
   "private": true,
   "description": "",
@@ -8,7 +9,9 @@
     "start": "webpack serve --env development --open",
     "build": "webpack --env production",
     "eslint": "eslint ./src --fix",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "keywords": [],
   "author": "",
