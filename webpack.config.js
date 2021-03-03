@@ -10,8 +10,7 @@ const TerserPlugin = require('terser-webpack-plugin')
 
 const commonConfig = {
   entry: {
-    main: './src/index.js',
-    vendor: './src/vendor.js'
+    main: './src/index.js'
   },
   module: {
     rules: [
@@ -65,7 +64,16 @@ const productionConfig = {
           removeComments: true
         }
       })
-    ]
+    ],
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          filename: 'vendor.bundle.js',
+          chunks: 'all'
+        }
+      }
+    }
   },
   plugins: [
     new CleanWebpackPlugin(),
